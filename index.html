@@ -4,157 +4,19 @@
   <meta charset="utf-8">
   <link rel="stylesheet" href="css/style.css" media="screen" title="no title" charset="UTF-8">
   <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-  <title>invincibleTTT</title>
+  <title>TDD-invincibleTTT</title>
 </head>
 <body >
-  <!--UI for counting winner and displaying players-->
-  <div id="scoreScreen" style="display: none;">
-    <div class="counter-container">
-      <div class="counter">
-        <strong class="player1"></strong><br>
-        <span style="font-style: italic">(player O)</span><br><br>
-        <span id="0">score:<span></span></span>
-      </div>
-      <div class="counter">
-        <strong>Tie</strong><br><br><br>
-        <span id="2"><span></span></span>
-      </div>
-      <div class="counter">
-        <strong class="player2"></strong><br>
-        <span style="font-style: italic">(player X)</span><br><br>
-        <span id="1">score:<span></span></span>
-      </div>
-    </div>
+  <div id="game" class="container">
     <canvas id="canvas"></canvas>
-    <div class="under">
-      <button id="newgame" type="button" name="button">New Game</button>
-    </div>
   </div>
-  <!--DOM elements for menu-->
-  <div id="menu">
-    <center>
-      <div class="title">
-        <h1>Tic Tac Toe</h1>
-      </div>
-
-      <div class="input-container">
-        <!--Input fields from codrops: http://tympanus.net/codrops/-->
-        <section class="content bgcolor-10">
-          <!--input field for player1's name-->
-          <span class="input input--shoko">
-            <input class="input__field input__field--shoko" type="text" id="input-4" />
-            <label class="input__label input__label--shoko" for="input-4">
-              <span class="input__label-content input__label-content--shoko">Player O</span>
-            </label>
-            <svg class="graphic graphic--shoko" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
-              <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"/>
-              <path d="M0,2.5c0,0,298.666,0,399.333,0C448.336,2.5,513.994,13,597,13c77.327,0,135-10.5,200.999-10.5c95.996,0,402.001,0,402.001,0"/>
-            </svg>
-          </span>
-
-          <span id="radio1" class="button-bar input--shoko">
-            <!--"radio-button" to pick player type for player1-->
-            <span class="fake-button small-button" data-ptype1="A.I.">
-              <img class="player small-img gray-filter" src="images/icon-comp.png" alt="" />
-            </span>
-            <span class="fake-button small-button" data-ptype1="Human">
-              <img class="player small-img gray-filter" src="images/icon-user.png" alt="" />
-            </span>
-          </span>
-
-        </section>
-        <section class="content bgcolor-10">
-          <!--input field for player2's name-->
-          <span class="input input--shoko">
-            <input class="input__field input__field--shoko" type="text" id="input-5" />
-            <label class="input__label input__label--shoko" for="input-5">
-              <span class="input__label-content input__label-content--shoko">Player X</span>
-            </label>
-            <svg class="graphic graphic--shoko" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
-              <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"/>
-              <path d="M0,2.5c0,0,298.666,0,399.333,0C448.336,2.5,513.994,13,597,13c77.327,0,135-10.5,200.999-10.5c95.996,0,402.001,0,402.001,0"/>
-            </svg>
-          </span>
-
-          <span id="radio2" class="button-bar  input--shoko">
-            <!--"radio-button" to pick player type for player2-->
-            <span class="fake-button small-button" data-ptype2="A.I.">
-              <img class="player small-img gray-filter" src="images/icon-comp.png" alt="" />
-            </span>
-            <span class="fake-button small-button" data-ptype2="Human">
-              <img class="player small-img gray-filter" src="images/icon-user.png" alt="" />
-            </span>
-          </span>
-
-        </section>
-      </div>
-
-      <div class="firstMove-bar">
-        <h2>Pick who's first.</h2>
-        <span id="radio3" class="button-bar  input--shoko">
-          <!--"radio-button" to pick first move-->
-          <span class="fake-button" data-firstmove="0">
-            <img class="gray-filter" src="images/nought.jpg" alt="" />
-          </span>
-          <span class="fake-button" data-firstmove="1">
-            <img class="gray-filter" src="images/cross.jpg" alt="" />
-          </span>
-          <span class="fake-button" data-firstmove="2">
-            <img class="gray-filter" src="images/random.jpg" alt="" />
-          </span>
-        </span>
-      </div>
-
-      <div class="startGame">
-        <!--Start game button-->
-        <div class="fake-button">
-          <h2 id="startGame">Start Game >></h2>
-        </div>
-      </div>
-
-    </center>
+  <div id="jasmine" class="container">
+    <iframe src="SpecRunner.html" name="targetframe" allowTransparency="true" scrolling="no" frameborder="0" ></iframe>
   </div>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-  <script src="js/board.js"></script>
-  <script src="js/game.js"></script>
-  <script src="js/gui.js"></script>
-  <script src="js/ai.js"></script>
-  <script src="js/main.js"></script>
-  <script>
-  // Script for input field from codrops.
-    (function() {
-      // trim polyfill : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim
-      if (!String.prototype.trim) {
-        (function() {
-          // Make sure we trim BOM and NBSP
-          var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
-          String.prototype.trim = function() {
-            return this.replace(rtrim, '');
-          };
-        })();
-      }
-
-      [].slice.call( document.querySelectorAll( 'input.input__field' ) ).forEach( function( inputEl ) {
-        // in case the input is already filled..
-        if( inputEl.value.trim() !== '' ) {
-          classie.add( inputEl.parentNode, 'input--filled' );
-        }
-
-        // events:
-        inputEl.addEventListener( 'focus', onInputFocus );
-        inputEl.addEventListener( 'blur', onInputBlur );
-      } );
-
-      function onInputFocus( ev ) {
-        classie.add( ev.target.parentNode, 'input--filled' );
-      }
-
-      function onInputBlur( ev ) {
-        if( ev.target.value.trim() === '' ) {
-          classie.remove( ev.target.parentNode, 'input--filled' );
-        }
-      }
-    })();
-  </script>
+  <script src="js/src/board.js"></script>
+  <script src="js/src/gui.js"></script>
+  <script src="js/src/game.js"></script>
+  <script src="js/src/main.js"></script>
 </body>
 </html>

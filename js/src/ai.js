@@ -1,0 +1,7 @@
+function miniMax() {
+
+}
+
+function score() {
+
+}
