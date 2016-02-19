@@ -32,7 +32,7 @@ describe('GUI', function() {
       expect(gui.getCoord(8).y).toEqual(250);
   });
 
-  describe('GUI VISUAL tests. Click on each test to them check one by one!', function() {
+  describe('GUI VISUAL tests. Click on each test to check them one by one!', function() {
 
     it('VISUAL: draw circle', function() {
       var position = {x: gui.canvas.width / 2, y: gui.canvas.height / 2};
