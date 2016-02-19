@@ -1,3 +1,5 @@
+var BOARDSIZE = 3;
+
 var Board = function(squares) {
   this.squares = squares || [];
 };

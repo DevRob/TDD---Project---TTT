@@ -29,7 +29,7 @@ describe('Board', function() {
     expect(board.isFull()).toBeFalsy();
   });
 
-  it('- check if board is full', function() {
+  it('Check if board is full', function() {
     var board = new Board([
       X, X, X,
       O, O, X,
