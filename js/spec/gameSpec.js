@@ -9,7 +9,9 @@ describe('Game Modul', function() {
   });
 
   it('Game class has players', function() {
-    expect(game.players).toBeDefined();
+    var players = game.players;
+    expect(players.playerX).toBeDefined();
+    expect(players.playerY).toBeDefined();
   });
 
   it('Game class has game status', function() {

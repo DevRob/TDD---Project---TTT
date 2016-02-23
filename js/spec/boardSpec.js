@@ -45,7 +45,7 @@ describe('Board', function() {
       O, O, X,
       O, X, O,
     ]);
-    expect(board.checkWin()).toBe(X);
+    expect(board.checkWin().result).toBe(X);
   });
 
   it('- check winner in 2nd row', function() {
@@ -54,7 +54,7 @@ describe('Board', function() {
       O, O, O,
       X, X, O,
     ]);
-    expect(board.checkWin()).toBe(O);
+    expect(board.checkWin().result).toBe(O);
   });
 
   it('- check winner in 3rd row', function() {
@@ -63,7 +63,7 @@ describe('Board', function() {
       X, O, O,
       X, X, X,
     ]);
-    expect(board.checkWin()).toBe(X);
+    expect(board.checkWin().result).toBe(X);
   });
 
   it('- check winner in 1st colomn', function() {
@@ -72,7 +72,7 @@ describe('Board', function() {
       X, O, O,
       X, X, O,
     ]);
-    expect(board.checkWin()).toBe(X);
+    expect(board.checkWin().result).toBe(X);
   });
 
   it('- check winner in 2nd colomn', function() {
@@ -81,7 +81,7 @@ describe('Board', function() {
       X, O, O,
       X, O, X,
     ]);
-    expect(board.checkWin()).toBe(O);
+    expect(board.checkWin().result).toBe(O);
   });
 
   it('- check winner in 3rd colomn', function() {
@@ -90,7 +90,7 @@ describe('Board', function() {
       X, O, X,
       O, X, X,
     ]);
-    expect(board.checkWin()).toBe(X);
+    expect(board.checkWin().result).toBe(X);
   });
 
   it('- check winner in 1st diagonal', function() {
@@ -99,7 +99,7 @@ describe('Board', function() {
       X, O, X,
       O, X, O,
     ]);
-    expect(board.checkWin()).toBe(O);
+    expect(board.checkWin().result).toBe(O);
   });
 
   it('- check winner in 2nd diagonal', function() {
@@ -108,6 +108,6 @@ describe('Board', function() {
       X, O, X,
       O, X, X,
     ]);
-    expect(board.checkWin()).toBe(O);
+    expect(board.checkWin().result).toBe(O);
   });
 });
