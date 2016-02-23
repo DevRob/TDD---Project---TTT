@@ -13,27 +13,30 @@ Board.prototype.playerAt = function(position) {
 };
 
 Board.prototype.isFull = function () {
-  return this.squares.length == 9;
+  return this.squares.length == Math.pow(BOARDSIZE, 2);
 };
 
 Board.prototype.checkWin = function() {
+  var gameStatus = {result: null, line: null};
   var winCombos = {
-    rowOne:   [0, 1, 2],
-    rowTwo:   [3, 4, 5],
-    rowThree: [6, 7, 8],
-    colOne:   [0, 3, 6],
-    colTwo:   [1, 4, 7],
-    colThree: [2, 5, 8],
-    diagOne:  [0, 4, 8],
-    diagTwo:  [2, 4, 6]
+    rowOne:   {angle: 4, indexes: [0, 1, 2]},
+    rowTwo:   {angle: -4, indexes: [3, 4, 5]},
+    rowThree: {angle: 4, indexes: [6, 7, 8]},
+    colOne:   {angle: 94, indexes: [0, 3, 6]},
+    colTwo:   {angle: 86, indexes: [1, 4, 7]},
+    colThree: {angle: 94, indexes: [2, 5, 8]},
+    diagOne:  {angle: 48, indexes: [0, 4, 8]},
+    diagTwo:  {angle: -43, indexes: [2, 4, 6]}
   };
 
-  for (var winline in winCombos) {
-    var rowSet = new Set(this.getLine(winCombos[winline]));
+  for (var combo in winCombos) {
+    var rowSet = new Set(this.getLine(winCombos[combo].indexes));
     if (rowSet.size == 1) {
-      return rowSet.values().next().value;
+      gameStatus.result = rowSet.values().next().value;
+      gameStatus.line = winCombos[combo];
     }
   }
+  return gameStatus;
 };
 
 Board.prototype.getLine = function(positions) {
