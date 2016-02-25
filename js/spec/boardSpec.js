@@ -1,4 +1,4 @@
-describe('Board', function() {
+describe('BOARD', function() {
   var X = "X";
   var O = "O";
   var board;

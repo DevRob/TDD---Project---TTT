@@ -29,11 +29,13 @@ Board.prototype.checkWin = function() {
     diagTwo:  {angle: -43, indexes: [2, 4, 6]}
   };
 
-  for (var combo in winCombos) {
-    var rowSet = new Set(this.getLine(winCombos[combo].indexes));
-    if (rowSet.size == 1) {
-      gameStatus.result = rowSet.values().next().value;
-      gameStatus.line = winCombos[combo];
+  if (this.squares.length > 2) {
+    for (var combo in winCombos) {
+      var rowSet = new Set(this.getLine(winCombos[combo].indexes));
+      if (rowSet.size == 1) {
+        gameStatus.result = rowSet.values().next().value;
+        gameStatus.line = winCombos[combo];
+      }
     }
   }
   return gameStatus;
