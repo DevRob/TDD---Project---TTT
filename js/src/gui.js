@@ -61,7 +61,8 @@ GUI.prototype.drawCross = function(index) {
 
 GUI.prototype.drawNought = function(index) {
   var size = this.canvas.width / 9;
-  this.drawCircle(this.getCoord(index), size, 16, DARKGREY)
+  var lineWidth = 16;
+  this.drawCircle(this.getCoord(index), size, lineWidth, DARKGREY)
 };
 
 GUI.prototype.getCoord = function(index) {
@@ -97,6 +98,14 @@ GUI.prototype.drawLine = function(midPoint, length, angle, width, color) {
 
 GUI.prototype.clearCanvas = function() {
   this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  return this;
+};
+
+GUI.prototype.smoothening = function () {
+  var ctx = this.ctx;
+  ctx.mozImageSmoothingEnabled = true;
+  ctx.msImageSmoothingEnabled = true;
+  ctx.imageSmoothingEnabled = true;
   return this;
 };
 

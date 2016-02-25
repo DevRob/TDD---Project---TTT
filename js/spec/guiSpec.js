@@ -15,7 +15,7 @@ describe('GUI', function() {
     expect(canvas == gui.canvas).toBeTruthy();
   });
 
-  describe('GUI helper functions', function() {
+  describe('* helper functions', function() {
     beforeEach(function() {
       var gui = new GUI();
     });
@@ -59,7 +59,7 @@ describe('GUI', function() {
     });
   });
 
-  describe('GUI VISUAL tests. Click on each test to check them one by one!', function() {
+  describe('* VISUAL tests. Click on each test to check them one by one!', function() {
     var X = "X";
     var O = "O";
 

@@ -1,21 +1,36 @@
 html,
 body {
   height: 98%;
+  color: #626e7a;
+  font-family: sans-serif;
 }
 
-canvas {
+.container {
+  height: 40%;
+}
+
+.canvas {
   padding: 0;
   margin: auto;
   display: block;
 }
 
-.canvas_container {
-  height: 30%;
+.screen {
+  display: inline;
+  width: 32%;
+  height: 90%;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
 }
 
 .jasmine_html-reporter {
-  height: 68%;
-  margin-top: 20px
+  height: 60%;
 }
 
 .jasmine-failures {

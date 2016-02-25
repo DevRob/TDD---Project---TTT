@@ -1,4 +1,4 @@
-describe('A.I. Modul', function() {
+describe('A.I. MODUL', function() {
   it('Has miniMax function', function() {
     expect(miniMax).toBeDefined();
   });
