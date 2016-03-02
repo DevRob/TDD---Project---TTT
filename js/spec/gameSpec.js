@@ -2,27 +2,16 @@ describe('GAME MODUL', function() {
   var game;
   var O = "O";
   var X = "X";
+  var options = {
+    O: "Human",
+    X: "Human",
+    firstMove: "X"
+  }
   beforeEach(function() {
-    game = new Game();
-  });
-
-  it('Has Player class', function() {
-    var player = new Player();
-    expect(player).toBeDefined();
-    expect(player.name).toBeDefined();
-    expect(player.type).toBe("Human");
-  });
-
-  it('Player name and type can be set', function() {
-    var name = "Bender";
-    var type = "A.I.";
-    var player = new Player(name, type);
-    expect(player.name).toBeDefined("Bender");
-    expect(player.type).toBeDefined("A.I.");
+    game = new Game(options);
   });
 
   it('Has Game class', function() {
-    var game = new Game();
     expect(game).toBeDefined();
   });
 
@@ -43,7 +32,9 @@ describe('GAME MODUL', function() {
     ]);
     var preResetPlayer = game.currentPlayer;
     game.resetGame();
-    expect(game.board.squares.length).toEqual(0);
+    var squareSet = new Set(game.board.squares);
+    expect(squareSet.size).toEqual(1);
+    expect(squareSet.values().next().value).toBe(undefined);
     expect(game.currentPlayer).not.toBe(preResetPlayer);
   });
 
@@ -74,6 +65,15 @@ describe('GAME MODUL', function() {
       game.board = new Board([
         O, X, O,
         X, X, O
+      ]);
+      expect(game.inProgress()).toBeTruthy();
+    });
+
+    it('- false, after 9 moves, no winner', function() {
+      game.board = new Board([
+        O, X, O,
+        X, X, O,
+        O, O, X
       ]);
       expect(game.inProgress()).toBeFalsy();
     });

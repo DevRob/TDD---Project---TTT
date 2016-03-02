@@ -5,6 +5,7 @@
   <title>Jasmine Spec Runner v2.4.1</title>
 
   <link rel="shortcut icon" type="image/png" href="jasmine-2.4.1/jasmine_favicon.png">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="jasmine-2.4.1/jasmine.css">
   <link rel="stylesheet" href="css/style.css">
 
@@ -17,25 +18,105 @@
 
 <body>
   <div class="container">
-    <div class="score screen left">
-      <center>Player O</center>
-      <ul>
-        Name:
-      </ul>
-      <ul>score:</ul>
+    <div class="row">
+      <div class="col-md-4">
+        <div id="menu"  class="left-align">
+          <strong>Select player type</strong>
+          <div class="row playerO">
+
+          <div class="col-md-3">
+            <br>
+            <span>player O</span>
+          </div>
+
+          <div class="col-md-4">
+            <div id="radio1" class="button-bar">
+              <!--"radio-button" to pick player type for player1-->
+              <span class="fake-button small-button" data-ptype1="A.I.">
+                <img class="player small-img gray-filter" src="images/icon-comp.png" alt="" />
+              </span>
+              <span class="fake-button small-button" data-ptype1="Human">
+                <img class="player small-img gray-filter" src="images/icon-user.png" alt="" />
+              </span>
+            </div>
+          </div>
+
+          </div>
+          <div class="row playersPick">
+
+            <div class="col-md-3">
+              <br>
+              <span>player X</span>
+            </div>
+
+            <div class="col-md-4">
+              <div id="radio2" class="button-bar">
+                <!--"radio-button" to pick player type for player1-->
+                <span class="fake-button small-button" data-ptype2="A.I.">
+                  <img class="player small-img gray-filter" src="images/icon-comp.png" alt="" />
+                </span>
+                <span class="fake-button small-button" data-ptype2="Human">
+                  <img class="player small-img gray-filter" src="images/icon-user.png" alt="" />
+                </span>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row left-align firstMove-bar">
+            <strong>Pick who's first.</strong>
+            <div id="radio3" class="button-bar">
+              <!--"radio-button" to pick first move-->
+              <span class="fake-button" data-firstmove="0">
+                <img class="gray-filter" src="images/nought.jpg" alt="" />
+              </span>
+              <span class="fake-button" data-firstmove="1">
+                <img class="gray-filter" src="images/cross.jpg" alt="" />
+              </span>
+              <span class="fake-button" data-firstmove="2">
+                <img class="gray-filter" src="images/random.jpg" alt="" />
+              </span>
+            </div>
+          </div>
+
+          <div class="left-align row">
+            <button id="startGame" type="button" name="button">Start Game</button>
+          </div>
+        </div> <!--End of Menu-->
+
+      </div><!--End of first column-->
+
+      <div class="col-md-4">
+        <canvas id="canvas"></canvas>
+        <div class="row">
+          <button id="newGame" type="button" name="button" style="display: none;">New Game</button>
+        </div>
+      </div><!--End of second column-->
+
+      <div class="col-md-4">
+        <div id="scoreScreen">
+          <table class="table" style="width:100%">
+            <tr>
+              <td></td>
+              <td>score</td>
+            </tr>
+            <tr>
+              <td>Payer O</td>
+              <td class="scoreO">0</td>
+            </tr>
+            <tr>
+              <td>Player X</td>
+              <td class="scoreX">0</td>
+            </tr>
+            <tr>
+              <td>Tie:</td>
+              <td class="tie">0</td>
+            </tr>
+          </table>
+        </div>
+      </div><!--End of third column-->
     </div>
-    <div class="canvas screen">
-      <button type="button" name="button">START</button><br>
-      <canvas id="canvas"></canvas>
-    </div>
-    <div class="score screen right">
-      <center>Player X</center>
-      <ul>
-        Name:
-      </ul>
-      <ul>score:</ul>
-    </div>
-  </div>
+  </div><!--End of container-->
 </body>
 <!-- include source files here... -->
 <script src="js/src/board.js"></script>
