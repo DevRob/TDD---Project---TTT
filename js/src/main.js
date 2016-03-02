@@ -79,7 +79,9 @@ function humanMove(event) {
 }
 
 function aiMove() {
-  var bestMove = game.board.isEmpty() ? { move: 4 } : minMaxMove(game.board, game.currentPlayer, 0);
+  var bestMove = game.board.isEmpty() ? {
+    move: randomChoice(game.board.getEmptySquares())
+  } : minMaxMove(game.board, game.currentPlayer, 0);
   game.board.move(game.currentPlayer, bestMove.move);
   game.switchPlayer();
   gameLoop();

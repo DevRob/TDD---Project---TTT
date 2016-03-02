@@ -19,10 +19,6 @@ Game.prototype.resetGame = function() {
  this.switchPlayer();
 };
 
-Game.prototype.getPlayerType = function() {
- return this.players[this.currentPlayer].playerType;
-};
-
 Game.prototype.getPlayerType = function(player) {
   return player == "X" ? this.X : this.O;
 };
