@@ -1,17 +1,8 @@
-var NAMES = ["bob", "tom", "selly", "katy", "zorg", "daro", "rik", "nisi"];
 
-var Player = function(name, type) {
-  this.name = name || randomChoice(NAMES);
-  this.type = type || "Human";
-};
-
-var Game = function() {
-  this.options = options || null;
-  this.players = {
-    "X" : new Player(),
-    "O" : new Player(),
-  };
-  this.currentPlayer = randomChoice(["X", "O"]);
+var Game = function(options) {
+  this.O = options.O;
+  this.X = options.X;
+  this.currentPlayer = options.firstMove;
   this.board = new Board();
 };
 
@@ -20,7 +11,7 @@ Game.prototype.switchPlayer = function() {
 };
 
 Game.prototype.inProgress = function() {
-  return this.board.checkWin().result === null;
+  return this.board.isFull() ? false : this.board.checkWin().result === null;
 };
 
 Game.prototype.resetGame = function() {
@@ -32,14 +23,14 @@ Game.prototype.getPlayerType = function() {
  return this.players[this.currentPlayer].playerType;
 };
 
+Game.prototype.getPlayerType = function(player) {
+  return player == "X" ? this.X : this.O;
+};
+
 function randomChoice(array) {
   return array[parseInt(Math.floor(Math.random() * array.length))];
 }
 
 function nextPlayer(player) {
-  if (player == "X") {
-    return "O";
-  } else {
-    return "X";
-  }
+  return player == "X" ? "O" : "X"
 }

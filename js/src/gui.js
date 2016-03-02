@@ -2,11 +2,14 @@
 var BLUE = '#27a8e0';
 var GREY = '#8894a0';
 var DARKGREY = '#626e7a';
+var ORANGE = '#ff6b01';
 
 var GUI = function () {
   this.canvas = document.getElementById('canvas');
   this.ctx = this.canvas.getContext('2d');
   this.squareSize = this.canvas.width / 3;
+  this.canvas.height = this.canvas.width;
+  this.winnerCount = {"O": 0, "X": 0, "T": 0}
 }
 
 GUI.prototype.drawBoard = function () {
@@ -26,7 +29,7 @@ GUI.prototype.drawBoard = function () {
 
 GUI.prototype.updateBoard = function(board) {
   self = this;
-  self.clearCanvas().drawBoard();
+  self.clearCanvas().drawShadow().drawBoard();
   board.squares.forEach(function(square, index) {
     if (square == "X") {
       self.drawCross(index);
@@ -41,10 +44,10 @@ GUI.prototype.drawWin = function(board) {
   var gameStatus = board.checkWin();
   var midPoint, color, angle, lineWidth = 20;
   var length = this.canvas.width * 0.9;
-  if (gameStatus.result != null) {
+  if (gameStatus.result != null && gameStatus.result != "T") {
     midPoint = this.getCoord(gameStatus.line.indexes[1]);
     angle = gameStatus.line.angle;
-    color = 'red';
+    color = ORANGE;
     this.drawLine(midPoint, length, angle, lineWidth, color);
   }
 };
@@ -54,7 +57,7 @@ GUI.prototype.drawCross = function(index) {
   var lineWidth = 16;
   var angle;
   for (var i = 0; i < 2; i++) {
-    angle = (90 * i) + 45;
+    angle = (90 * i) - 45;
     this.drawLine(this.getCoord(index), size, angle, lineWidth, BLUE);
   }
 };
@@ -73,6 +76,12 @@ GUI.prototype.getCoord = function(index) {
     y: this.squareSize * (rowIndex + 1 / 2)
   }
 }
+
+GUI.prototype.getIndex = function (coords) {
+  var row = parseInt(coords.y / this.squareSize);
+  var col = parseInt(coords.x / this.squareSize);
+  return row * 3 + col;
+};
 
 GUI.prototype.drawCircle = function(position, radius, width, color) {
   var ctx = this.ctx;
@@ -101,11 +110,42 @@ GUI.prototype.clearCanvas = function() {
   return this;
 };
 
+GUI.prototype.drawShadow = function() {
+  var ctx = this.ctx;
+  ctx.shadowColor = '#999';
+  ctx.shadowBlur = 20;
+  ctx.shadowOffsetX = 10;
+  ctx.shadowOffsetY = 10;
+  return this;
+};
+
 GUI.prototype.smoothening = function () {
   var ctx = this.ctx;
   ctx.mozImageSmoothingEnabled = true;
   ctx.msImageSmoothingEnabled = true;
   ctx.imageSmoothingEnabled = true;
+  return this;
+};
+
+GUI.prototype.hideMenu = function() {
+  this.menu = document.getElementById('menu');
+  this.menu.style.display = "none";
+  return this;
+};
+
+GUI.prototype.showScoreScreen = function() {
+  this.scoreScreen = document.getElementsByClassName('scoreScreen');
+  this.scoreScreen.style.display = "block";
+  return this;
+};
+
+GUI.prototype.refreshCounter = function(game) {
+  var result = game.board.checkWin().result
+  var counter = this.winnerCount;
+  if (result) { counter[result] += 1; }
+  $('.scoreO').text(counter["O"]);
+  $('.scoreX').text(counter["X"]);
+  $('.tie').text(counter["T"]);
   return this;
 };
 
