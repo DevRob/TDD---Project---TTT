@@ -19,7 +19,7 @@ function getFirstMove() {
     0: "O",
     1: "X",
     2: randomChoice(["O", "X"])
-  }
+  };
   return selection[$('#radio3').children('.checked').attr('data-firstmove')];
 }
 
@@ -68,12 +68,12 @@ function humanMove(event) {
   var coords = {
     x: event.offsetX,
     y: event.offsetY
-  }
+  };
   var squareIndex = gui.getIndex(coords);
   if (!game.board.playerAt(squareIndex)) {
     game.board.move(game.currentPlayer, squareIndex);
     game.switchPlayer();
-    denyClick()
+    denyClick();
     gameLoop();
   }
 }

@@ -9,8 +9,8 @@ var GUI = function () {
   this.ctx = this.canvas.getContext('2d');
   this.squareSize = this.canvas.width / 3;
   this.canvas.height = this.canvas.width;
-  this.winnerCount = {"O": 0, "X": 0, "T": 0}
-}
+  this.winnerCount = {"O": 0, "X": 0, "T": 0};
+};
 
 GUI.prototype.drawBoard = function () {
   var size = this.canvas.width;
@@ -44,7 +44,7 @@ GUI.prototype.drawWin = function(board) {
   var gameStatus = board.checkWin();
   var midPoint, color, angle, lineWidth = 20;
   var length = this.canvas.width * 0.9;
-  if (gameStatus.result != null && gameStatus.result != "T") {
+  if (gameStatus.result !== null && gameStatus.result != "T") {
     midPoint = this.getCoord(gameStatus.line.indexes[1]);
     angle = gameStatus.line.angle;
     color = ORANGE;
@@ -65,7 +65,7 @@ GUI.prototype.drawCross = function(index) {
 GUI.prototype.drawNought = function(index) {
   var size = this.canvas.width / 9;
   var lineWidth = 16;
-  this.drawCircle(this.getCoord(index), size, lineWidth, DARKGREY)
+  this.drawCircle(this.getCoord(index), size, lineWidth, DARKGREY);
 };
 
 GUI.prototype.getCoord = function(index) {
@@ -74,8 +74,8 @@ GUI.prototype.getCoord = function(index) {
   return {
     x: this.squareSize * (colIndex + 1 / 2),
     y: this.squareSize * (rowIndex + 1 / 2)
-  }
-}
+  };
+};
 
 GUI.prototype.getIndex = function (coords) {
   var row = parseInt(coords.y / this.squareSize);
@@ -140,7 +140,7 @@ GUI.prototype.showScoreScreen = function() {
 };
 
 GUI.prototype.refreshCounter = function(game) {
-  var result = game.board.checkWin().result
+  var result = game.board.checkWin().result;
   var counter = this.winnerCount;
   if (result) { counter[result] += 1; }
   $('.scoreO').text(counter["O"]);
@@ -158,12 +158,12 @@ function lineTransform(midPoint, length, angle) {
   return {
     startPoint: {x: startPoint.x + deltaX, y: startPoint.y - deltaY},
     endPoint: {x: endPoint.x - deltaX, y: endPoint.y + deltaY}
-  }
-};
+  };
+}
 
 function getEndPoints(midPoint, length) {
   return {
     startPoint: {x: midPoint.x - length / 2, y: midPoint.y},
     endPoint: {x: midPoint.x + length / 2, y: midPoint.y}
-  }
+  };
 }

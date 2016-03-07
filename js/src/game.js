@@ -28,5 +28,5 @@ function randomChoice(array) {
 }
 
 function nextPlayer(player) {
-  return player == "X" ? "O" : "X"
+  return player == "X" ? "O" : "X";
 }
