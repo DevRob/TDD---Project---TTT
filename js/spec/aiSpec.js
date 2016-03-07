@@ -10,7 +10,7 @@ describe('A.I. MODUL', function() {
   it('Scores at depth 5: O = -5, X = 5, Tie = 0',function() {
     var O = "O";
     var X = "X";
-    var T = "T"
+    var T = "T";
     var depth = 5;
     expect(score(O, depth).score).toEqual(-5);
     expect(score(X, depth).score).toEqual(5);

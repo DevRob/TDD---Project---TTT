@@ -6,7 +6,8 @@ describe('GAME MODUL', function() {
     O: "Human",
     X: "Human",
     firstMove: "X"
-  }
+  };
+  
   beforeEach(function() {
     game = new Game(options);
   });

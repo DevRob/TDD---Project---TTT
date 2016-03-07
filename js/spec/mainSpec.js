@@ -9,7 +9,7 @@ describe('MAIN APP', function() {
 
   it('Set up GUI', function() {
     var gui = new GUI();
-    expect(gui).toBeDefined()
+    expect(gui).toBeDefined();
   });
 
   it('gameloop function defined', function() {

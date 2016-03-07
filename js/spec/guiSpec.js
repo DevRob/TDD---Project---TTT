@@ -38,7 +38,7 @@ describe('GUI', function() {
     it('- getEndPoints() returns an object', function() {
       var midPoint = {x: 200, y: 200};
       var length = 120;
-      expect(typeof getEndPoints(midPoint, length) == 'object').toBeTruthy()
+      expect(typeof getEndPoints(midPoint, length) == 'object').toBeTruthy();
     });
 
     it('- getEndPoints().startPoint returns {x: 0, y: 50}', function() {
