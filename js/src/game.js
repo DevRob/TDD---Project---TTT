@@ -1,32 +1,34 @@
 
-var Game = function(options) {
-  this.O = options.O;
-  this.X = options.X;
-  this.currentPlayer = options.firstMove;
-  this.board = new Board();
-};
+let Game = function (options) {
+  this.O = options.O
+  this.X = options.X
+  this.lastPlayer = ''
+  this.currentPlayer = options.firstMove
+  this.board = new Board()
+}
 
-Game.prototype.switchPlayer = function() {
-  this.currentPlayer = nextPlayer(this.currentPlayer);
-};
+Game.prototype.switchPlayer = function () {
+  this.lastPlayer = this.currentPlayer
+  this.currentPlayer = nextPlayer(this.currentPlayer)
+}
 
-Game.prototype.inProgress = function() {
-  return this.board.isFull() ? false : this.board.checkWin().result === null;
-};
+Game.prototype.inProgress = function () {
+  return this.board.isFull() ? false : this.board.checkWin().result === null
+}
 
-Game.prototype.resetGame = function() {
- this.board = new Board();
- this.switchPlayer();
-};
+Game.prototype.resetGame = function () {
+  this.board = new Board()
+  this.switchPlayer()
+}
 
-Game.prototype.getPlayerType = function(player) {
-  return player == "X" ? this.X : this.O;
-};
+Game.prototype.getPlayerType = function (player) {
+  return player == "X" ? this.X : this.O
+}
 
 function randomChoice(array) {
-  return array[parseInt(Math.floor(Math.random() * array.length))];
+  return array[parseInt(Math.floor(Math.random() * array.length))]
 }
 
 function nextPlayer(player) {
-  return player == "X" ? "O" : "X";
+  return player == "X" ? "O" : "X"
 }

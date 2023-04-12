@@ -1,8 +1,8 @@
 describe('GAME MODUL', function() {
-  var game;
-  var O = "O";
-  var X = "X";
-  var options = {
+  let game;
+  let O = "O";
+  let X = "X";
+  let options = {
     O: "Human",
     X: "Human",
     firstMove: "X"
@@ -31,9 +31,9 @@ describe('GAME MODUL', function() {
       X, O, O,
       O, X, X
     ]);
-    var preResetPlayer = game.currentPlayer;
+    let preResetPlayer = game.currentPlayer;
     game.resetGame();
-    var squareSet = new Set(game.board.squares);
+    let squareSet = new Set(game.board.squares);
     expect(squareSet.size).toEqual(1);
     expect(squareSet.values().next().value).toBe(undefined);
     expect(game.currentPlayer).not.toBe(preResetPlayer);

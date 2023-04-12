@@ -1,119 +1,153 @@
-var gui;
-var game;
-var options = {
+let gui
+let game
+let options = {
   O: null,
   X: null,
   firstMove: null
-};
-
-function getOType() {
-  return $('#radio1').children('.checked').attr('data-ptype1');
 }
 
-function getXType() {
-  return $('#radio2').children('.checked').attr('data-ptype2');
-}
+let players = document.querySelector('[data-player-type]')
 
-function getFirstMove() {
-  var selection = {
-    0: "O",
-    1: "X",
-    2: randomChoice(["O", "X"])
-  };
-  return selection[$('#radio3').children('.checked').attr('data-firstmove')];
+function getPlayers() {
+  return players.checked
 }
 
 function checkOptions(options) {
-  options.O = getOType();
-  options.X = getXType();
-  options.firstMove = getFirstMove();
-  for (var item in options) {
+  options.X = getPlayers() ? 'Human' : 'A.I.'
+  options.O = 'Human'
+  options.firstMove = "O"
+  for (let item in options) {
     if (!options[item]) {
-      alert("Please set: " + item);
-      return false;
+      alert("Please set: " + item)
+      return false
     }
   }
-  return true;
+  return true
 }
 
 function startGame() {
   gui = new GUI();
   game = new Game(options);
   gui.smoothening().drawBoard();
-  gameLoop();
+  gameLoop(false)
 }
 
-function gameLoop() {
-  gui.refreshCounter(game).updateBoard(game.board);
+function gameLoop(playSound = true) {
+  gui.refreshCounter(game).updateBoard(game.board)
   if (game.inProgress()) {
-    callMoveType();
+    callMoveType()
+    if (playSound) handleSound(game.lastPlayer)
   } else {
-    setTimeout(function() {
-      game.resetGame();
-      gameLoop();
-    }, 1250);
+    playEndSound()
+    setTimeout(function () {
+      game.resetGame()
+      gameLoop(false)
+    }, 1000)
   }
 }
 
 function callMoveType() {
-  var playerType = game.getPlayerType(game.currentPlayer);
+  let playerType = game.getPlayerType(game.currentPlayer)
   if (playerType == "Human") {
-    letClick(humanMove);
-  } else if (playerType == "A.I."){
-    setTimeout(function() { aiMove(); }, 750);
+    letClick(humanMove)
+  } else if (playerType == "A.I.") {
+    setTimeout(function () { aiMove() }, 850)
   }
 }
 
 function humanMove(event) {
-  var coords = {
+  let coords = {
     x: event.offsetX,
     y: event.offsetY
-  };
-  var squareIndex = gui.getIndex(coords);
+  }
+  let squareIndex = gui.getIndex(coords)
   if (!game.board.playerAt(squareIndex)) {
-    game.board.move(game.currentPlayer, squareIndex);
-    game.switchPlayer();
-    denyClick();
-    gameLoop();
+    game.board.move(game.currentPlayer, squareIndex)
+    game.switchPlayer()
+    denyClick()
+    gameLoop()
   }
 }
 
 function aiMove() {
-  var bestMove = game.board.isEmpty() ? {
+  let bestMove = game.board.isEmpty() ? {
     move: randomChoice(game.board.getEmptySquares())
-  } : minMaxMove(game.board, game.currentPlayer, 0);
-  game.board.move(game.currentPlayer, bestMove.move);
-  game.switchPlayer();
-  gameLoop();
+  } : minMaxMove(game.board, game.currentPlayer, 0)
+  game.board.move(game.currentPlayer, bestMove.move)
+  game.switchPlayer()
+  gameLoop()
 }
 
 function letClick(callback) {
-  document.getElementById('canvas').onclick = callback;
+  document.getElementById('canvas').onclick = callback
 }
 
 function denyClick() {
-  document.getElementById('canvas').onclick = null;
+  document.getElementById('canvas').onclick = null
 }
 
 function newGame() {
-  location.reload();
+  location.reload()
 }
 
-$(function() {
-  // DOM manipulation
-  $('.fake-button').on('click', function() {
-    $(this).parent('.button-bar').find('img').addClass("gray-filter");
-    $(this).siblings('.fake-button').removeClass("checked");
-    $(this).children('img').removeClass("gray-filter");
-    $(this).addClass("checked");
-  });
+function handleSound(player) {
+  if (player === 'O') playNoughtSound()
+  if (player === 'X') playCrossSound()
+}
 
-  $('#startGame').on('click', function() {
-    if(checkOptions(options)) {
-      startGame();
-      $(this).css('display', 'none');
-      $('#newGame').css('display', 'inline-flex');
+function playEndSound() {
+  document.querySelector('audio#complete').play()
+}
+
+function playNoughtSound() {
+  document.querySelector('audio#on').play()
+}
+
+function playCrossSound() {
+  document.querySelector('audio#off').play()
+}
+
+$(function () {
+  if (checkOptions(options)) {
+    startGame()
+  }
+
+  $('[data-player-type]').on('click', function () {
+    if (checkOptions(options)) {
+      startGame()
     }
-  });
-  $('#newGame').on('click', newGame);
-});
+  })
+
+  $('.jasmin-icon').on('click', function () {
+    $('.jasmine_html-reporter').attr('data-visible', true)
+    injectCloseButton()
+  })
+
+  $('.mute-icon').on('click', function () {
+    let isMuted = $(this).attr('data-muted') === 'true'
+    $(this).attr('data-muted', !isMuted)
+    handleMute(!isMuted)
+  })
+})
+
+function injectCloseButton() {
+  const jasminClose = $('.jasmin-close-icon')
+  if (jasminClose.length === 0) {
+    const jasmin = document.querySelector('.jasmine-banner')
+    const buttonTemplate = document.querySelector('#jasmin-close')
+    const clone = buttonTemplate.content.cloneNode(true)
+    let closebutton = clone.querySelector('.jasmin-close-icon')
+    jasmin.appendChild(closebutton)
+
+    $('.jasmin-close-icon').on('click', function () {
+      $('.jasmine_html-reporter').attr('data-visible', false)
+    })
+  }
+}
+
+function handleMute(muted) {
+  const players = document.querySelectorAll('audio')
+  players.forEach(player => {
+    player.muted = muted
+  })
+}

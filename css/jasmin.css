@@ -1,0 +1,37 @@
+.jasmine_html-reporter {
+  position: absolute;
+  opacity: 0;
+  top: 100%;
+  left: 0;
+  right: 0;
+  transition: all 0.5s ease-in-out;
+  z-index: -1;
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.jasmine_html-reporter[data-visible='true'] {
+  top: 0;
+  opacity: 1;
+  z-index: 1;
+}
+
+.jasmin-close-icon {
+  float: right;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.jasmin-close-icon svg {
+  width: 20px;
+  height: 20px;
+  fill: #8a4182;
+}
+
+.jasmine-results {
+  font-size: 16px;
+}
+
+.jasmine-specs {
+  padding: 10px;
+}
