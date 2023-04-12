@@ -1,0 +1,40 @@
+[class*='-icon'] svg {
+  display: block;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+
+.mute-icon {
+  color: #363636;
+}
+
+.mute-icon[data-muted='true'] {
+  color: #232323;
+}
+
+.players input {
+  display: none;
+}
+
+.mute-icon,
+.jasmin-icon,
+.players-label {
+  cursor: pointer;
+}
+
+.players .player-icon {
+  color: #363636;
+}
+
+.players input:checked + .player-icon {
+  color: #292929;
+}
+
+#scoreScreen {
+  font-size: 24px;
+  color: #d0ae48;
+  padding: 20px;
+  font-style: italic;
+}

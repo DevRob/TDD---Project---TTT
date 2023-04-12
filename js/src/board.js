@@ -1,69 +1,69 @@
-var BOARDSIZE = 3;
-var WINCOMBOS = {
-  rowOne:   {angle: 4, indexes: [0, 1, 2]},
-  rowTwo:   {angle: -4, indexes: [3, 4, 5]},
-  rowThree: {angle: 4, indexes: [6, 7, 8]},
-  colOne:   {angle: 94, indexes: [0, 3, 6]},
-  colTwo:   {angle: 86, indexes: [1, 4, 7]},
-  colThree: {angle: 94, indexes: [2, 5, 8]},
-  diagOne:  {angle: 48, indexes: [0, 4, 8]},
-  diagTwo:  {angle: -43, indexes: [2, 4, 6]}
-};
+let BOARDSIZE = 3
+let WINCOMBOS = {
+  rowOne: { angle: 4, indexes: [0, 1, 2] },
+  rowTwo: { angle: -4, indexes: [3, 4, 5] },
+  rowThree: { angle: 4, indexes: [6, 7, 8] },
+  colOne: { angle: 94, indexes: [0, 3, 6] },
+  colTwo: { angle: 86, indexes: [1, 4, 7] },
+  colThree: { angle: 94, indexes: [2, 5, 8] },
+  diagOne: { angle: 48, indexes: [0, 4, 8] },
+  diagTwo: { angle: -43, indexes: [2, 4, 6] }
+}
 
-var Board = function(squares) {
-  squares ? this.squares = squares.slice() : this.squares = new Array(Math.pow(BOARDSIZE, 2));
-};
+let Board = function (squares) {
+  squares ? this.squares = squares.slice() : this.squares = new Array(Math.pow(BOARDSIZE, 2))
+}
 
-Board.prototype.move = function(player, position) {
-  this.squares[position] = player;
-};
+Board.prototype.move = function (player, position) {
+  this.squares[position] = player
+}
 
-Board.prototype.playerAt = function(position) {
-  return this.squares[position];
-};
+Board.prototype.playerAt = function (position) {
+  return this.squares[position]
+}
 
 Board.prototype.isFull = function () {
-  var squareSet = new Set(this.squares);
-  return !squareSet.has(undefined) && this.squares.length == Math.pow(BOARDSIZE, 2);
-};
+  let squareSet = new Set(this.squares)
+  return !squareSet.has(undefined) && this.squares.length == Math.pow(BOARDSIZE, 2)
+}
 
-Board.prototype.checkWin = function() {
-  var gameStatus = {result: null, line: null};
-  for (var combo in WINCOMBOS) {
-    var rowSet = new Set(this.getLine(WINCOMBOS[combo].indexes));
+Board.prototype.checkWin = function () {
+  let gameStatus = { result: null, line: null }
+  for (let combo in WINCOMBOS) {
+    let rowSet = new Set(this.getLine(WINCOMBOS[combo].indexes))
     if (rowSet.size == 1) {
-      var lineValue = rowSet.values().next().value;
+      let lineValue = rowSet.values().next().value
       if (lineValue) {
-        gameStatus.result = lineValue;
-        gameStatus.line = WINCOMBOS[combo];
-        break;
+        gameStatus.result = lineValue
+        gameStatus.line = WINCOMBOS[combo]
+        break
       }
-    } else if (this.isFull()){
-      gameStatus.result = "T";
+    } else if (this.isFull()) {
+      gameStatus.result = "T"
     }
   }
-  return gameStatus;
-};
+  return gameStatus
+}
 
-Board.prototype.getLine = function(positions) {
-  var line = [];
-  for (var i = 0, len = positions.length; i < len; i++) {
-    line.push(this.playerAt(positions[i]));
+Board.prototype.getLine = function (positions) {
+  let line = []
+  for (let i = 0, len = positions.length; i < len; i++) {
+    line.push(this.playerAt(positions[i]))
   }
-  return line;
-};
+  return line
+}
 
 Board.prototype.getEmptySquares = function () {
-  var squares = this.squares;
-  var empties = [];
-  for (var i = 0, len = Math.pow(BOARDSIZE, 2); i < len; i++) {
+  let squares = this.squares
+  let empties = []
+  for (let i = 0, len = Math.pow(BOARDSIZE, 2); i < len; i++) {
     if (squares[i] === undefined) {
-      empties.push(i);
+      empties.push(i)
     }
   }
-  return empties;
-};
+  return empties
+}
 
 Board.prototype.isEmpty = function () {
-  return this.getEmptySquares().length == Math.pow(BOARDSIZE, 2);
-};
+  return this.getEmptySquares().length == Math.pow(BOARDSIZE, 2)
+}

@@ -1,139 +1,45 @@
+
+@import 'mediaQueries.css';
+@import 'ui.css';
+@import 'game.css';
+@import 'jasmin.css';
+
 html,
 body {
-  height: 98%;
-  color: #626e7a;
+  font-size: 35px;
   font-family: sans-serif;
+  background-color: #363636;
+  font-family: 'Audiowide', cursive;
+  overflow: hidden;
 }
 
-canvas {
-  display: block;
-  margin: auto;
-  border-width: 2px;
-  border-color: #27a8e0;
-  border-style: solid;
-  -webkit-box-shadow: 10px 10px 5px 0px rgba(98,110,122,1);
-  -moz-box-shadow: 10px 10px 5px 0px rgba(98,110,122,1);
-  box-shadow: 10px 10px 5px 0px rgba(98,110,122,1);
-  border-radius: 5px;
-  background-color: #c6ccd1;
-}
-
-img {
-  width: 60px;
-  height: 60px;
-  border-radius: 0.5em
-}
-
-img:hover {
-	filter: grayscale(0);
-	-webkit-filter: grayscale(0);
-	-moz-filter: grayscale(0);
-	-o-filter: grayscale(0);
-	-ms-filter: grayscale(0);
-  opacity: 1;
-  cursor: pointer;
-}
-
-img:active {
-  width:58px;
-  height: 58px;
-}
-
-a {
-  text-align: left;
-}
-
-strong {
-  font-size: 20px;
-}
-
-td {
-  padding: 15px;
-}
-
-.firstMove-bar {
-  height: 160px;
-}
-
-.left-align {
-  text-align: left;
-}
-
-.table,
-.row {
-  padding: 15px;
-}
-
-.score {
-  padding: 10px;
-}
-
-.col-md-4 {
-  text-align: center;
-}
-
-.small-img:active {
-  width:27px;
-  height: 27px;
-}
-
-.fake-button {
-  width: 65px;
-  height: 65px;
-  margin: 0 auto;
-  display:inline-block;
-  margin-top: 1.2em;
-}
-
-.fake-button h2:hover {
-  cursor: pointer;
-  color:#27a8e0;
-}
-
-.fake-button h2:active {
-  color: #01579B;
-  font-size: 99%;
-}
-
-.small-button {
-  width: 35px;
-  height: 35px;
-}
-
-.player {
-  height:2em;
-  width: 2em;
-}
-
-.gray-filter {
-	filter: grayscale(1);
-	-webkit-filter: grayscale(1);
-	-moz-filter: grayscale(1);
-	-o-filter: grayscale(1);
-	-ms-filter: grayscale(1);
-  opacity: 0.6;
-}
-
-.button {
-  width: 40%;
-  margin: 0 auto;
-}
-
-.button-bar {
-  height: 40px;
-  display: inline-flex;
-}
-
-.jasmine_html-reporter {
-  height: 59%;
-  width: 99%;
-}
-
-.jasmine-failures {
-  width: 800px;
-}
-
-.jasmine-results {
-  height: 80%;
+body[data-modal-visible='true'] {
+  overflow: auto;
   overflow-y: scroll;
+}
+
+.Page-icons {
+  display: none;
+}
+
+.col-md-12:first-of-type {
+  display: flex;
+  justify-content: space-between;
+}
+
+.container  {
+ padding-top: 40px;
+}
+
+.vh-100 {
+  height: 100vh;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-spaced {
+  justify-content: space-between;
 }

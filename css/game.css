@@ -1,0 +1,19 @@
+canvas {
+  display: block;
+  margin: auto;
+  border-radius: 5px;
+  transform: rotateX(15deg) rotateY(31deg) rotateZ(-4deg);
+}
+
+.firstMove-bar {
+  height: 160px;
+}
+
+.left-align {
+  text-align: left;
+}
+
+.player {
+  height:2em;
+  width: 2em;
+}

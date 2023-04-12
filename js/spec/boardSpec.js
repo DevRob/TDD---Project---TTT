@@ -1,7 +1,7 @@
 describe('BOARD', function() {
-  var X = "X";
-  var O = "O";
-  var board;
+  let X = "X";
+  let O = "O";
+  let board;
   beforeEach(function() {
     board = new Board();
   });
@@ -11,22 +11,22 @@ describe('BOARD', function() {
   });
 
   it('Can make a move with X', function() {
-    var position = 0;
-    var player = X;
+    let position = 0;
+    let player = X;
     board.move(player, position);
     expect(board.playerAt(position)).toBe(player);
   });
 
   it('Can make a move with O', function() {
-    var position = 2;
-    var player = O;
+    let position = 2;
+    let player = O;
     board.move(player, position);
     expect(board.playerAt(position)).toBe(player);
   });
 
   it('After move board is not empty', function() {
-    var position = 2;
-    var player = O;
+    let position = 2;
+    let player = O;
     board.move(player, position);
     expect(board.isEmpty()).toBeFalsy();
   });
@@ -36,7 +36,7 @@ describe('BOARD', function() {
   });
 
   it('Check if board is full', function() {
-    var board = new Board([
+    let board = new Board([
       X, X, X,
       O, O, X,
       O, X, O,
@@ -46,29 +46,29 @@ describe('BOARD', function() {
 
   it('Board is not full after 1st move on bot-right',
     function() {
-      var board = new Board();
+      let board = new Board();
       board.move(X, 8);
       expect(board.isFull()).toBeFalsy();
   });
 
   it('is the board empty', function() {
-    var board = new Board();
+    let board = new Board();
     expect(board.isEmpty()).toBeTruthy();
   });
 
   it('Get Empty squares', function() {
-    var board = new Board([
+    let board = new Board([
       X, X, X,
       O, O
     ]);
-    var empties = [5, 6, 7, 8];
+    let empties = [5, 6, 7, 8];
     expect(board.getEmptySquares).toBeDefined();
     expect(board.getEmptySquares().toString()).toBe(empties.toString());
   });
 
   describe('* check game results', function() {
     it('- check winner in 1st row', function() {
-      var board = new Board([
+      let board = new Board([
         X, X, X,
         O, O, X,
         O, X, O,
@@ -77,7 +77,7 @@ describe('BOARD', function() {
     });
 
     it('- check winner in 2nd row', function() {
-      var board = new Board([
+      let board = new Board([
         X, O, X,
         O, O, O,
         X, X, O,
@@ -86,7 +86,7 @@ describe('BOARD', function() {
     });
 
     it('- check winner in 3rd row', function() {
-      var board = new Board([
+      let board = new Board([
         O, O, X,
         X, O, O,
         X, X, X,
@@ -95,7 +95,7 @@ describe('BOARD', function() {
     });
 
     it('- check winner in 1st colomn', function() {
-      var board = new Board([
+      let board = new Board([
         X, O, X,
         X, O, O,
         X, X, O,
@@ -104,7 +104,7 @@ describe('BOARD', function() {
     });
 
     it('- check winner in 2nd colomn', function() {
-      var board = new Board([
+      let board = new Board([
         O, O, X,
         X, O, O,
         X, O, X,
@@ -113,7 +113,7 @@ describe('BOARD', function() {
     });
 
     it('- check winner in 3rd colomn', function() {
-      var board = new Board([
+      let board = new Board([
         O, O, X,
         X, O, X,
         O, X, X,
@@ -122,7 +122,7 @@ describe('BOARD', function() {
     });
 
     it('- check winner in 1st diagonal', function() {
-      var board = new Board([
+      let board = new Board([
         O, O, X,
         X, O, X,
         O, X, O,
@@ -131,7 +131,7 @@ describe('BOARD', function() {
     });
 
     it('- check winner in 2nd diagonal', function() {
-      var board = new Board([
+      let board = new Board([
         X, O, O,
         X, O, X,
         O, X, X,
@@ -140,7 +140,7 @@ describe('BOARD', function() {
     });
 
     it('- check winner X after 5 moves', function() {
-      var board = new Board([
+      let board = new Board([
         X, X, X,
         O, O
       ]);
@@ -148,7 +148,7 @@ describe('BOARD', function() {
     });
 
     it('- check if it is a TIE', function() {
-      var board = new Board([
+      let board = new Board([
         X, O, O,
         O, X, X,
         O, X, O,

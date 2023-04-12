@@ -1,124 +1,210 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
-  <title>Jasmine Spec Runner v2.4.1</title>
-
+  <title>Tic Tac Toe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
   <link rel="shortcut icon" type="image/png" href="jasmine-2.4.1/jasmine_favicon.png">
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="jasmine-2.4.1/jasmine.css">
   <link rel="stylesheet" href="css/style.css">
-
   <script src="jasmine-2.4.1/jasmine.js"></script>
   <script src="jasmine-2.4.1/jasmine-html.js"></script>
   <script src="jasmine-2.4.1/boot.js"></script>
   <script src="js/jquery.min.js"></script>
-
+  <!-- <script data-main="scripts/main" src="js/require/require.js"></script> -->
 </head>
 
 <body>
+  <div class="Page-icons">
+    <svg version="1.0" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+      <!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+      <symbol id="icon-user" viewBox="0 0 200 200">
+        <g>
+          <rect width="200" height="200" style="fill:#363636" />
+        </g>
+        <g transform="translate(0,200) scale(0.1,-0.1)" fill="#232323" stroke="none">
+          <path d="M673 1659 c-69 -22 -146 -75 -194 -134 -131 -163 -119 -410 27 -560
+        25 -26 44 -48 42 -49 -109 -51 -152 -80 -229 -156 -74 -73 -93 -100 -132 -180
+        -82 -173 -83 -250 -2 -250 41 0 57 20 75 95 31 132 165 293 293 354 322 153
+        681 -7 791 -351 15 -48 34 -89 42 -92 49 -19 94 9 94 58 0 36 -35 139 -71 206
+        -61 114 -167 220 -284 281 -33 18 -62 33 -64 35 -2 2 17 26 42 54 148 165 153
+        402 12 567 -104 122 -285 172 -442 122z m255 -135 c171 -85 217 -315 91 -458
+        -168 -190 -476 -91 -506 163 -12 100 39 214 121 270 58 40 91 49 172 50 56 1
+        80 -4 122 -25z" />
+          <path d="M1165 1660 c-21 -23 -23 -66 -4 -85 8 -8 42 -18 77 -24 168 -27 275
+        -161 258 -324 -9 -87 -47 -161 -116 -229 -33 -32 -60 -66 -60 -77 0 -31 32
+        -59 92 -79 73 -26 157 -82 209 -140 53 -60 115 -188 133 -275 17 -82 28 -97
+        72 -97 53 0 68 32 54 112 -17 94 -64 207 -120 285 -54 78 -107 127 -192 180
+        l-58 36 20 28 c11 15 35 58 53 96 31 65 32 74 32 188 0 115 -1 123 -32 186
+        -56 113 -152 193 -268 223 -81 22 -128 21 -150 -4z" fill="currentColor" />
+        </g>
+      </symbol>
+      <symbol id="icon-jasmin" version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"
+        preserveAspectRatio="xMidYMid meet">
+        <g>
+          <rect width="300" height="300" style="fill:#363636" />
+        </g>
+        <g transform="translate(25,250) scale(0.100000,-0.100000)" fill="#232323" stroke="none">
+          <path d="M1135 1964 c-156 -25 -280 -89 -391 -199 -132 -131 -197 -288 -197
+          -475 0 -113 20 -198 68 -295 88 -179 252 -312 445 -361 86 -22 245 -22 330 1
+          233 61 405 226 486 465 15 44 19 84 19 195 -1 125 -4 148 -27 213 -38 105 -83
+          176 -163 257 -125 125 -277 192 -449 200 -50 2 -104 1 -121 -1z m230 -149
+          c266 -70 441 -342 395 -614 -41 -247 -253 -434 -505 -448 -357 -20 -636 301
+          -564 649 39 190 202 361 390 412 72 19 211 20 284 1z" />
+          <path d="M1150 1577 c0 -98 4 -147 12 -155 7 -7 36 -12 65 -12 41 0 54 4 63
+          19 5 11 10 81 10 155 l0 136 -75 0 -75 0 0 -143z" />
+          <path d="M962 1651 c-10 -6 1 -29 49 -94 54 -75 64 -84 80 -74 17 11 17 13 -5
+          42 -12 16 -40 54 -60 83 -40 55 -43 57 -64 43z" />
+          <path d="M1402 1575 c-56 -77 -60 -85 -43 -94 15 -9 27 2 79 73 45 62 58 86
+          49 95 -6 6 -14 11 -17 11 -4 0 -34 -38 -68 -85z" />
+          <path d="M821 1438 c-12 -34 -21 -67 -21 -73 0 -6 60 -31 134 -54 153 -49 166
+          -48 186 22 19 68 10 76 -137 125 -71 23 -132 42 -135 42 -3 0 -16 -28 -27 -62z" />
+          <path d="M1461 1457 c-68 -23 -129 -49 -134 -58 -14 -23 10 -107 35 -120 14
+          -8 50 0 151 31 73 23 133 43 135 45 8 8 -40 145 -51 144 -7 0 -68 -20 -136
+          -42z" />
+          <path d="M898 1216 c-90 -27 -115 -44 -88 -61 10 -6 179 42 194 55 4 5 4 14 0
+          22 -8 12 -26 9 -106 -16z" />
+          <path d="M1090 1233 c-8 -2 -52 -56 -98 -119 l-82 -114 62 -45 c34 -25 64 -42
+          68 -38 43 47 160 221 160 239 0 15 -14 33 -42 53 -23 17 -44 30 -47 30 -4 -1
+          -13 -3 -21 -6z" />
+          <path d="M1291 1209 c-30 -21 -41 -36 -41 -55 0 -34 157 -247 174 -237 45 28
+          106 78 105 87 -1 21 -154 219 -176 227 -16 6 -32 1 -62 -22z" />
+          <path d="M1440 1222 c0 -15 20 -25 98 -49 86 -26 98 -28 103 -14 9 22 5 25
+          -92 55 -103 31 -109 31 -109 8z" />
+          <path d="M1200 965 c0 -98 1 -105 20 -105 19 0 20 7 20 105 0 98 -1 105 -20
+          105 -19 0 -20 -7 -20 -105z" />
+        </g>
+        <g transform="translate(20,250) scale(0.100000,-0.100000)" fill="#232323" stroke="none">
+          <path d="M340 405 c0 -18 5 -25 20 -25 19 0 20 -7 20 -104 0 -83 -3 -108 -16
+          -121 -21 -20 -45 -16 -59 10 -7 15 -18 19 -43 17 -29 -3 -32 -6 -26 -25 10
+          -34 34 -56 69 -66 47 -13 82 -3 110 31 23 28 25 37 25 144 0 107 1 114 20 114
+          15 0 20 7 20 25 0 24 -2 25 -70 25 -68 0 -70 -1 -70 -25z" />
+          <path d="M1530 400 c0 -27 3 -30 30 -30 27 0 30 3 30 30 0 27 -3 30 -30 30
+          -27 0 -30 -3 -30 -30z" />
+          <path d="M570 343 c-28 -10 -69 -56 -80 -89 -22 -67 20 -144 88 -164 34 -9 83
+          0 108 21 11 9 14 8 14 -5 0 -12 10 -16 45 -16 41 0 45 2 45 24 0 15 -7 26 -20
+          29 -18 5 -20 14 -20 76 0 64 2 71 20 71 15 0 20 7 20 25 0 23 -4 25 -45 25
+          -34 0 -45 -4 -45 -16 0 -13 -5 -12 -26 5 -25 20 -71 26 -104 14z m101 -72 c17
+          -18 29 -40 29 -56 0 -36 -41 -75 -80 -75 -39 0 -80 39 -80 75 0 32 50 85 80
+          85 12 0 35 -13 51 -29z" />
+          <path d="M836 329 c-19 -15 -26 -30 -26 -53 0 -40 22 -62 81 -79 50 -15 65
+          -48 30 -67 -17 -8 -24 -7 -41 10 -11 11 -31 20 -45 20 -22 0 -25 -4 -25 -35 0
+          -28 4 -35 20 -35 11 0 20 5 20 11 0 8 4 8 13 2 53 -42 147 -1 147 64 0 33 -24
+          54 -80 72 -41 13 -56 23 -58 39 -4 28 33 40 57 18 10 -9 27 -16 39 -16 18 0
+          22 6 22 31 0 28 -3 31 -25 27 -14 -3 -28 -1 -31 3 -10 17 -71 9 -98 -12z" />
+          <path d="M1136 329 c-21 -17 -26 -18 -26 -5 0 12 -10 16 -40 16 -36 0 -40 -2
+          -40 -25 0 -16 6 -25 15 -25 12 0 15 -15 15 -75 0 -60 -3 -75 -15 -75 -9 0 -15
+          -9 -15 -25 0 -24 3 -25 60 -25 57 0 60 1 60 25 0 16 -6 25 -15 25 -12 0 -15
+          14 -15 65 0 58 3 66 25 81 23 15 27 15 50 0 22 -15 25 -23 25 -81 0 -51 -3
+          -65 -15 -65 -9 0 -15 -9 -15 -25 0 -24 3 -25 60 -25 57 0 60 1 60 25 0 16 -6
+          25 -15 25 -12 0 -15 14 -15 64 0 66 6 78 47 90 38 12 63 -24 63 -90 0 -47 -3
+          -57 -20 -61 -13 -3 -20 -14 -20 -29 0 -23 3 -24 65 -24 63 0 65 1 65 25 0 18
+          -5 25 -20 25 -18 0 -20 7 -20 74 0 90 -4 103 -41 121 -40 21 -74 18 -105 -8
+          l-27 -23 -23 23 c-29 29 -73 30 -108 2z" />
+          <path d="M1758 334 c-16 -8 -28 -10 -28 -4 0 5 -20 10 -45 10 -41 0 -45 -2
+          -45 -25 0 -16 6 -25 15 -25 12 0 15 -15 15 -75 0 -60 -3 -75 -15 -75 -9 0 -15
+          -9 -15 -25 0 -24 3 -25 60 -25 57 0 60 1 60 25 0 16 -6 25 -15 25 -11 0 -15
+          13 -15 54 0 30 3 62 6 71 10 25 50 37 78 24 28 -13 36 -35 36 -97 0 -36 -4
+          -45 -20 -49 -13 -3 -20 -14 -20 -29 0 -23 3 -24 65 -24 63 0 65 1 65 25 0 18
+          -5 25 -20 25 -18 0 -20 7 -20 78 -1 80 -8 100 -47 120 -29 16 -62 14 -95 -4z" />
+          <path d="M2025 340 c-35 -14 -66 -57 -72 -98 -7 -54 1 -83 33 -115 54 -55 135
+          -53 189 3 l29 30 -35 0 c-19 0 -43 -7 -53 -15 -11 -8 -28 -15 -37 -15 -19 0
+          -79 46 -79 61 0 5 47 9 105 9 l105 0 0 28 c0 37 -33 88 -69 107 -32 16 -84 19
+          -116 5z m113 -67 l27 -28 -42 -3 c-24 -2 -61 -2 -84 0 l-41 3 22 28 c16 20 30
+          27 56 27 25 0 43 -8 62 -27z" />
+          <path d="M1500 315 c0 -16 6 -25 15 -25 12 0 15 -15 15 -75 0 -60 -3 -75 -15
+          -75 -9 0 -15 -9 -15 -25 0 -24 3 -25 60 -25 57 0 60 1 60 25 0 16 -6 25 -15
+          25 -12 0 -15 18 -15 100 l0 100 -45 0 c-41 0 -45 -2 -45 -25z" />
+        </g>
+      </symbol>
+      <symbol id="icon-close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+        <path
+          d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+      </symbol>
+      <symbol id="icon-mute" viewBox="0 0 712 512">
+        <g fill="#232323">
+          <path d="M301.1 34.8C312.6 40 320 51.4 320 64V448c0 12.6-7.4 24-18.9 29.2s-25 3.1-34.4-5.3L131.8 352H64c-35.3 0-64-28.7-64-64V224c0-35.3 28.7-64 64-64h67.8L266.7 40.1c9.4-8.4 22.9-10.4 34.4-5.3z"/>
+        </g>
+        <g fill="currentColor">
+          <path d="M425 167l55 55 55-55c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-55 55 55 55c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-55-55-55 55c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l55-55-55-55c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0z"/>
+        </g>
+      </symbol>
+    </svg>
+  </div>
   <div class="container">
-    <div class="row">
-      <div class="col-md-4">
-        <div id="menu"  class="left-align">
-          <strong>Select player type</strong>
-          <div class="row playerO">
+    <div class="flex-column flex-spaced vh-100">
 
-          <div class="col-md-3">
-            <br>
-            <span>player O</span>
-          </div>
-
-          <div class="col-md-4">
-            <div id="radio1" class="button-bar">
-              <!--"radio-button" to pick player type for player1-->
-              <span class="fake-button small-button" data-ptype1="A.I.">
-                <img class="player small-img gray-filter" src="images/icon-comp.png" alt="" />
-              </span>
-              <span class="fake-button small-button" data-ptype1="Human">
-                <img class="player small-img gray-filter" src="images/icon-user.png" alt="" />
-              </span>
-            </div>
-          </div>
-
-          </div>
-          <div class="row playersPick">
-
-            <div class="col-md-3">
-              <br>
-              <span>player X</span>
-            </div>
-
-            <div class="col-md-4">
-              <div id="radio2" class="button-bar">
-                <!--"radio-button" to pick player type for player1-->
-                <span class="fake-button small-button" data-ptype2="A.I.">
-                  <img class="player small-img gray-filter" src="images/icon-comp.png" alt="" />
-                </span>
-                <span class="fake-button small-button" data-ptype2="Human">
-                  <img class="player small-img gray-filter" src="images/icon-user.png" alt="" />
-                </span>
-              </div>
-            </div>
-
-          </div>
-
-          <div class="row left-align firstMove-bar">
-            <strong>Pick who's first.</strong>
-            <div id="radio3" class="button-bar">
-              <!--"radio-button" to pick first move-->
-              <span class="fake-button" data-firstmove="0">
-                <img class="gray-filter" src="images/nought.jpg" alt="" />
-              </span>
-              <span class="fake-button" data-firstmove="1">
-                <img class="gray-filter" src="images/cross.jpg" alt="" />
-              </span>
-              <span class="fake-button" data-firstmove="2">
-                <img class="gray-filter" src="images/random.jpg" alt="" />
-              </span>
-            </div>
-          </div>
-
-          <div class="left-align row">
-            <button id="startGame" type="button" name="button">Start Game</button>
-          </div>
-        </div> <!--End of Menu-->
-
-      </div><!--End of first column-->
-
-      <div class="col-md-4">
-        <canvas id="canvas"></canvas>
-        <div class="row">
-          <button id="newGame" type="button" name="button" style="display: none;">New Game</button>
-        </div>
-      </div><!--End of second column-->
-
-      <div class="col-md-4">
+      <div class="col-md-12">
         <div id="scoreScreen">
-          <table class="table" style="width:100%">
-            <tr>
-              <td></td>
-              <td>score</td>
-            </tr>
-            <tr>
-              <td>Payer O</td>
-              <td class="scoreO">0</td>
-            </tr>
-            <tr>
-              <td>Player X</td>
-              <td class="scoreX">0</td>
-            </tr>
-            <tr>
-              <td>Tie:</td>
-              <td class="tie">0</td>
-            </tr>
-          </table>
+          <div>nought: <span class="scoreO">0</span></div>
+          <div>cross: <span class="scoreX">0</span></div>
+          <div>draw: <span class="tie">0</span></div>
         </div>
-      </div><!--End of third column-->
+        <div class="players">
+          <label class="players-label" for="players">
+            <input type="checkbox" id="players" data-player-type>
+            <div class="player-icon">
+              <svg>
+                <use xlink:href="#icon-user"></use>
+              </svg>
+            </div>
+          </label>
+        </div>
+        <div class="mute">
+          <div class="mute-icon">
+            <svg>
+              <use xlink:href="#icon-mute"></use>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <canvas id="canvas"></canvas>
+      </div>
+
+      <div class="col-md-12">
+        <div class="jasmin-icon">
+          <svg>
+            <use xlink:href="#icon-jasmin"></use>
+          </svg>
+        </div>
+        <template id="jasmin-close">
+          <div class="jasmin-close-icon">
+            <svg>
+              <use xlink:href="#icon-close"></use>
+            </svg>
+          </div>
+        </template>
+      </div>
+
     </div>
-  </div><!--End of container-->
+  </div>
+  <audio-container>
+    <audio id="button1" preload="true">
+      <source src="sounds/button1.ogg" type="audio/ogg">
+    </audio>
+    <audio id="button2" preload="true">
+      <source src="sounds/button2.ogg" type="audio/ogg">
+    </audio>
+    <audio id="on" preload="true">
+      <source src="sounds/on.ogg" type="audio/ogg">
+    </audio>
+    <audio id="off" preload="true">
+      <source src="sounds/off.ogg" type="audio/ogg">
+    </audio>
+    <audio id="complete" preload="true">
+      <source src="sounds/complete.ogg" type="audio/ogg">
+    </audio>
+  </audio-container>
+
 </body>
 <!-- include source files here... -->
+<script type="module" src="js/src/sound.js"></script>
 <script src="js/src/board.js"></script>
 <script src="js/src/gui.js"></script>
 <script src="js/src/game.js"></script>
@@ -128,7 +214,10 @@
 <!-- include spec files here... -->
 <script src="js/spec/boardSpec.js"></script>
 <script src="js/spec/guiSpec.js"></script>
-<script src="js/spec/gameSpec.js"></script>
-<script src="js/spec/mainSpec.js"></script>
-<script src="js/spec/aiSpec.js"></script>
+<!-- <script src="js/spec/gameSpec.js"></script> -->
+<!-- <script src="js/spec/mainSpec.js"></script> -->
+<!-- <script src="js/spec/aiSpec.js"></script> -->
+
+<script type="module" src="js/src/app.js"></script>
+
 </html>

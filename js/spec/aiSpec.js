@@ -8,17 +8,17 @@ describe('A.I. MODUL', function() {
   });
 
   it('Scores at depth 5: O = -5, X = 5, Tie = 0',function() {
-    var O = "O";
-    var X = "X";
-    var T = "T"
-    var depth = 5;
+    let O = "O";
+    let X = "X";
+    let T = "T";
+    let depth = 5;
     expect(score(O, depth).score).toEqual(-5);
     expect(score(X, depth).score).toEqual(5);
     expect(score(T, depth).score).toEqual(0);
   });
 
   it('Get highest scored move for X and lowest for O', function() {
-    var moves = [
+    let moves = [
       { score: 3, move: 8 },
       { score: -2, move: 3 },
       { score: 8, move: 4 }
@@ -29,11 +29,11 @@ describe('A.I. MODUL', function() {
 
   it('Get best move for O when X are on opposite corners and O in the middle',
     function() {
-      var O = "O";
-      var X = "X";
-      var U = undefined;
-      var bestMove;
-      var testBoardOne = new Board([
+      let O = "O";
+      let X = "X";
+      let U = undefined;
+      let bestMove;
+      let testBoardOne = new Board([
         X, U, U,
         U, O, U,
         U, U, X
@@ -46,15 +46,15 @@ describe('A.I. MODUL', function() {
     });
 
     it('Get best move is 3 for player O', function() {
-        var O = "O";
-        var X = "X";
-        var U = undefined;
-        var testBoardTwo = new Board([
+        let O = "O";
+        let X = "X";
+        let U = undefined;
+        let testBoardTwo = new Board([
           X, U, U,
           U, O, O,
           U, U, X
         ]);
-        var bestMove = minMaxMove(testBoardTwo, O, 0).move;
+        let bestMove = minMaxMove(testBoardTwo, O, 0).move;
         expect(bestMove).toEqual(3);
       });
 });
